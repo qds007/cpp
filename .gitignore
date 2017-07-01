@@ -1,0 +1,17 @@
+*.suo
+*.ipch
+*.log
+*.user
+*.filters
+*.db
+*.tlog
+*.idb
+*.obj
+*.ilk
+*.exe
+*.pdb
+*.opendb
+*.db-shm
+*.db-wal
+*.exp
+*.lib

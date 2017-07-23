@@ -8,13 +8,20 @@ namespace appConsoleSocketClient
     class Program
     {
         static Socket socket;
-        const string IP = "192.168.56.1"; //"127.0.0.1"
+        const string IP = "192.168.0.108"; //"127.0.0.1"
         static void Main(string[] args)
         {
+            var t = new TcpClient();
+            t.Connect(IP, 25249);
+            var t2 = new TcpClient();
+            IPAddress addr = IPAddress.Parse(IP);
+            t2.Connect(addr, 31017);
+
+
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             SocketAsyncEventArgs asyncArgs = new SocketAsyncEventArgs()
             {
-                RemoteEndPoint = new IPEndPoint(IPAddress.Parse(IP), 4502)
+                RemoteEndPoint = new IPEndPoint(IPAddress.Parse(IP), 31017)
             };
             asyncArgs.Completed += OnConnected;
             socket.ConnectAsync(asyncArgs);

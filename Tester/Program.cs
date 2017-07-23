@@ -11,8 +11,9 @@ namespace Tester
     {
         static void Main(string[] args)
         {
-            TcpClientFactory fac = new TcpClientFactory();
-            fac.Start();
+            ServerConnector connector = new ServerConnector();
+            connector.Start();
+            Console.ReadLine();
         }
     }
 }

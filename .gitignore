@@ -15,3 +15,7 @@
 *.db-wal
 *.exp
 *.lib
+*.dll
+obj
+bin
+packages

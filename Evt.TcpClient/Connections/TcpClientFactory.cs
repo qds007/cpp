@@ -25,20 +25,27 @@ namespace Evt.Communication.Connections
 
         private TcpClient BuildServerClientByName(ServerName serverName)
         {
-            var t = new TcpClient(AddressFamily.InterNetwork);
-            t.Connect("hostname", 12345);
-            var sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-            return null;
+            var t = new TcpClient();
+            var hostNameOrIP = _serverConfigs[serverName].HostName;
+            var port = _serverConfigs[serverName].Port;
+            t.Connect(hostNameOrIP,port);
+ 
+            return t;
         }
 
         Dictionary<ServerName, ServerConfig> _serverConfigs = new Dictionary<ServerName, ServerConfig>()
         {
-            { ServerName.OrderRoutingServer, new ServerConfig() {HostName="eqpwk-emm13",Port=31017 } },
-            { ServerName.VegaHitterServer, new ServerConfig() {HostName="eqpwk-emm13",Port=31224 } },
-            { ServerName.EvtVolPublisher, new ServerConfig() {HostName="eddcr-emm01",Port=25249 } },
-            { ServerName.ComplianceServer, new ServerConfig() {HostName="eqpwk-emm13",Port=31019 } },
-            { ServerName.FuseServer, new ServerConfig() {HostName="eqpwk-emm13",Port=31013} }
+            //{ ServerName.OrderRoutingServer, new ServerConfig() {HostName="eqpwk-emm13",Port=31017 } },
+            //{ ServerName.VegaHitterServer, new ServerConfig() {HostName="eqpwk-emm13",Port=31224 } },
+            //{ ServerName.EvtVolPublisher, new ServerConfig() {HostName="eddcr-emm01",Port=25249 } },
+            //{ ServerName.ComplianceServer, new ServerConfig() {HostName="eqpwk-emm13",Port=31019 } },
+            //{ ServerName.FuseServer, new ServerConfig() {HostName="eqpwk-emm13",Port=31013} }
+
+            { ServerName.OrderRoutingServer, new ServerConfig() {HostName="192.168.0.108",Port=31017 } },
+            { ServerName.VegaHitterServer, new ServerConfig() {HostName="192.168.0.108",Port=31224 } },
+            { ServerName.EvtVolPublisher, new ServerConfig() {HostName="192.168.0.108",Port=25249 } },
+            { ServerName.ComplianceServer, new ServerConfig() {HostName="192.168.0.108",Port=31019 } },
+            { ServerName.FuseServer, new ServerConfig() {HostName="192.168.0.108",Port=31013} }
         };
     }
 }

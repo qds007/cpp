@@ -7,7 +7,12 @@
 
 using namespace std;
 
-#define LOG(m) { cout<< m << endl; }
+#define LOG(m) { \
+  time_t now = time(0); \
+  tm* lt= localtime(&now); \
+  cout<< lt->tm_hour << ":" << lt->tm_min << ":" << lt->tm_sec << " " << m  << endl; \
+}
+
 #define CHK_ERR(x) { \
  if (!(x)) { \
     LOG("err: "<< errno << " " << strerror(errno) << " " << __LINE__); \
@@ -18,7 +23,6 @@ using namespace std;
 
 void *start_server(void* arg) {
     int port= *( (int*) arg);
-    LOG("creating socket on port " << port);
     int fd = ::socket(AF_INET,SOCK_STREAM,0);
     CHK_ERR(fd > 0);
     int opt_val_ptr;
@@ -27,6 +31,7 @@ void *start_server(void* arg) {
     CHK_ERR(::bind(fd, reinterpret_cast<const sockaddr*>(&listen_addr),sizeof(sockaddr_in)) == 0);
     const int s_backlog = 0;
     CHK_ERR(::listen(fd, s_backlog) == 0);
+    LOG("socket listening on port " << port);
     while(true) {
       sockaddr addr;
       socklen_t addr_len=sizeof(addr);

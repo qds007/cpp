@@ -15,7 +15,7 @@ namespace Evt.Communication.Connections
     {
         const int CONN_CHK_INTERVAL_SEC = 10;
         const int START_RETRY_INTERVAL_SEC = 10;
-        Dictionary<ServerName, TcpClient> _serverClients = new Dictionary<ServerName, TcpClient>();
+        Dictionary<ServerName, TcpClientEx> _serverClients = new Dictionary<ServerName, TcpClientEx>();
 
         public void Start()
         {
@@ -78,6 +78,7 @@ namespace Evt.Communication.Connections
 
         private bool IsConnected(Socket sock, ServerName serverName)
         {
+            //TODO: use server heartbeat instead running on a deticated thread.
             try
             {
                 if (!sock.Connected)
@@ -123,7 +124,7 @@ namespace Evt.Communication.Connections
             try
             {
                 sock.Blocking = false;
-                sock.Send(new byte[1], 1,SocketFlags.None);
+                sock.Send(new byte[1], 1,SocketFlags.None); // use Server Heartbeat instead
                 return true;
             }
             catch (SocketException e)
@@ -143,11 +144,11 @@ namespace Evt.Communication.Connections
             }
         }
 
-        private TcpClient BuildServerClientByName(ServerName serverName)
+        private TcpClientEx BuildServerClientByName(ServerName serverName)
         {
             try
             {
-                var t = new TcpClient();
+                var t = new TcpClientEx();
                 var hostNameOrIP = _serverConfigs[serverName].HostName;
                 var port = _serverConfigs[serverName].Port;
                 t.Connect(hostNameOrIP, port);

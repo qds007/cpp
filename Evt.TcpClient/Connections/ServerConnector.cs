@@ -15,7 +15,7 @@ namespace Evt.Communication.Connections
     {
         const int CONN_CHK_INTERVAL_SEC = 10;
         const int START_RETRY_INTERVAL_SEC = 10;
-        Dictionary<ServerName, TcpClientEx> _serverClients = new Dictionary<ServerName, TcpClientEx>();
+        Dictionary<ServerName, TcpClientEmm> _serverClients = new Dictionary<ServerName, TcpClientEmm>();
 
         public void Start()
         {
@@ -144,11 +144,11 @@ namespace Evt.Communication.Connections
             }
         }
 
-        private TcpClientEx BuildServerClientByName(ServerName serverName)
+        private TcpClientEmm BuildServerClientByName(ServerName serverName)
         {
             try
             {
-                var t = new TcpClientEx();
+                var t = new TcpClientEmm();
                 var hostNameOrIP = _serverConfigs[serverName].HostName;
                 var port = _serverConfigs[serverName].Port;
                 t.Connect(hostNameOrIP, port);

@@ -11,7 +11,7 @@ namespace TryOutPoll
 {
     class Program
     {
-        static TcpClientEx _client = new TcpClientEx();
+        static TcpClientEmm _client = new TcpClientEmm();
         static Tuple<string, int> _endPoint = new Tuple<string, int>("192.168.0.104", 31017);
         static void Main(string[] args)
         {

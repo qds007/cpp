@@ -18,6 +18,6 @@ void qds::SocketServerService::listen()
 {
 }
 
-void qds::SocketServerService::sendAsync(const Message & msg)
+void qds::SocketServerService::sendAsync(const int & msg)
 {
 }

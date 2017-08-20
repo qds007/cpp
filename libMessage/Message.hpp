@@ -1,11 +1,11 @@
 #pragma once
-#include <QdsMacros.hpp>
+//#include <QdsMacros.hpp>
 
 namespace qds
 {
-	class DLL_libMessage Message
+	class Message
 	{
-		DECL_CLASS(Message)
-	public:
+	//DECL_CLASS(Message)
+	
 	};
 }

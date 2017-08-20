@@ -1,16 +1,17 @@
 #pragma once
-#include <DllMacros.hpp>
+//#include <DllMacros.hpp>
 #include <string>
 #include "Message.hpp"
 
 using namespace std;
+class Message;
 namespace qds
 {
-	class DLL_libMessage SocketProcessor
+	class  SocketProcessor
 	{
 	public:
 		virtual bool Connect(string addr);
-		void sendAsync(const Message& msg);
+		void sendAsync(const string& msg);
 	protected:
 		void readMessage(string & buffer);
 

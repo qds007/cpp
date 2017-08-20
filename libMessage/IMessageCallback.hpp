@@ -1,5 +1,5 @@
 #pragma once
-#include "DllMacros.hpp"
+//#include "DllMacros.hpp"
 
 namespace qds
 {

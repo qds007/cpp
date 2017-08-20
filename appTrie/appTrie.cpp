@@ -31,7 +31,7 @@ struct TrieNode *getNode(void)
 void insert(struct TrieNode *root, const char *key)  //key looks like word to me, eg, "the"
 {
 	int level;
-	int length = strlen(key);
+	size_t length = strlen(key);
 	int index;
 
 	struct TrieNode *pCrawl = root;

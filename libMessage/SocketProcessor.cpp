@@ -1,14 +1,19 @@
 #include "SocketProcessor.hpp"
 
-bool qds::SocketProcessor::Connect(string addr)
+class Message;
+namespace qds
 {
-	return false;
-}
+	
+	bool SocketProcessor::Connect(string addr)
+	{
+		return false;
+	}
 
-void qds::SocketProcessor::sendAsync(const Message & msg)
-{
-}
+	void SocketProcessor::sendAsync(const string & msg)
+	{
+	}
 
-void qds::SocketProcessor::readMessage(string & buffer)
-{
+	void SocketProcessor::readMessage(string & buffer)
+	{
+	}
 }

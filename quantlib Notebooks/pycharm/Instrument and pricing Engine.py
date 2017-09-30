@@ -64,7 +64,7 @@ print(option.NPV())
 
 engineMC=MCEuropeanEngine(process,"PseudoRandom", timeSteps=20, requiredSamples=250000)
 option.setPricingEngine(engineMC)
-
+option.isExpired=False
 Settings.instance().evaluationDate=today
 
 print('{0:.4f} '.format(option.NPV())) # MC cannot est greek, must use Fininte Difference
